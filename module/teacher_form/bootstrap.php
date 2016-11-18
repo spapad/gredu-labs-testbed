@@ -4,6 +4,7 @@ use Slim\App;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use GuzzleHttp\ClientInterface;
 
 /**
  * gredu_labs.
@@ -62,6 +63,33 @@ $events('on', 'app.bootstrap', function ($app, $container) {
             $this->get('/submit-success', GrEduLabs\TeacherForm\Action\SubmitSuccess::class)
                 ->setName('teacher_form.submit_success');
         });
+        $app->get('/teacher-form/mm/{school_name}', function (Request $req, Response $res) use ($container) {
+                $route = $req->getAttribute('route');
+                $school_name = $route->getArgument('school_name');
+
+
+                $httpClient = new GuzzleHttp\Client([
+                    'base_uri' => "https://mm.sch.gr/api/units",
+                    ]);
+
+                $config   = $httpClient->getConfig();
+                $baseUri  = $config['base_uri'];
+                $url      = $baseUri;
+                $response = $httpClient->request('GET', $url);
+
+                $responseData = json_decode($response->getBody()->getContents(), true);
+                if (!isset($responseData['data']) || empty($responseData['data'])) {
+                    return;
+                }
+                $cnt = count($responseData);
+                $school_arr = array();
+                for ($i=0; $i<$cnt; $i++) {
+                    array_push($school_arr, $responseData['data'][$i]['name']);
+                }
+
+                return $res->withJson($school_arr);
+
+            })->setName('teacher_form.mm');
     });
 
 };

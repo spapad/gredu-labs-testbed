@@ -3,7 +3,23 @@
 {% import "schools/form.twig" as macros %}
 
 {% block content %}
+<div id="schoolsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #eee">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <strong>Edulabs - Βοήθεια</strong>
+                    </h4>
+                </div>
+                <div id="schoolsModalBody" class="modal-body"></div>
+                <div class="modal-footer" style="background-color: #eee">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Κλείσιμο</button>
+                </div>
+            </div>
 
+        </div>
+    </div>
 
 <div id="app-form">
     <h1>
@@ -33,6 +49,9 @@
                          {{ macros.input('telef', 'Τηλέφωνο', form.values.telef)}}
                          {{ macros.input('email', 'Email', form.values.email)}}
                          {{ macros.input('school', 'Σχολείο που υπηρετει', form.values.school)}}
+                         <div id="search-schools-button" class="pull-right" data-toggle="modal" data-target="#schoolsModal">
+                             <a href="#" title="Βοήθεια"><i class="glyphicon glyphicon-question-sign"></i></a>
+                         </div>
                          {{ macros.input('schooltelef', 'Τηλέφωνο Σχολείου', form.values.schooltelef)}}
 
                 </div>
@@ -47,7 +66,7 @@
         <input type="hidden" name="{{ csrf.value_key }}" value="{{ csrf.value }}">
     </form>
 
-   
+
 </div>
 {% endblock %}
 
@@ -56,4 +75,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
     <script src="{{ base_url() }}/js/teacher_form/index.js"></script>
+
 {% endblock %}
