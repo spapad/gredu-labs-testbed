@@ -87,7 +87,7 @@ class TeacherForm extends InputFilter
                     ->getFilterChain()
                     ->attach(new Filter\StringTrim());
 
-     
+
         $this->add($name)
 	        ->add($surname)
             ->add($eidikothta)

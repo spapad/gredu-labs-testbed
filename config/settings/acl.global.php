@@ -43,7 +43,7 @@ return [
                 ['/university-form/submit-success',['guest'],['get']],
                 ['/teacher-form', ['guest'], ['get', 'post']],
                 ['/teacher-form/submit-success',['guest'], ['get','post']],
-                ['/teacher-form/mm/{school_name}',['guest'], ['get']],
+                ['/teacher-form/mm',['guest'], ['get']],
 
             ],
         ],

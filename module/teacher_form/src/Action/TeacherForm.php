@@ -62,7 +62,7 @@ class TeacherForm
     public function __invoke(Request $req, Response $res)
     {
         if ($req->isPost()) {
-            $reqParams = $req->getParams();
+            $reqParams = array_map(function($string) use ($link) { return htmlspecialchars($string); }, $req->getParams());
             $this->TeacherFormInputFilter->setData($reqParams);
             $isValid = $this->TeacherFormInputFilter->isValid();
 
@@ -74,7 +74,7 @@ class TeacherForm
 
                 return $res;
             } else {
-              
+
                 $this->view['form'] = [
                 'is_valid'   => $isValid,
                 'values'     => $this->TeacherFormInputFilter->getValues(),

@@ -7,28 +7,24 @@
         utils.formMessages.render(form, messages);
     }());
 
+    var proto = $.ui.autocomplete.prototype,
+	initSource = proto._initSource;
 
-    $('#search-schools-button').click(function() {
-       $.ajax({
-          url: window.location.pathname + '/mm/ΣΥΚΕΩΝ',
-          data: {
-             format: 'json'
-          },
-          error: function() {
-             $('#info').html('<p>An error has occurred</p>');
-          },
-          dataType: 'json',
-          success: function(data) {
-              console.log(data);
-              $('#schoolsModalBody').val(data);
-    //         var $title = $('<h1>').text(data.talks[0].talk_title);
-    //         var $description = $('<p>').text(data.talks[0].talk_description);
-/*             $('#info')
-                .append($title)
-                .append($description); */
-          },
-          type: 'GET'
-       });
+    $("#select_school").autocomplete({
+        source: window.location.protocol + "//" + window.location.host + "/teacher-form/mm",
+        minLength: 4,
+        select: function(event, ui) {
+            console.log(ui);
+            $("#mm_id").val(ui.item.mm_id);
+            $("#el-school").val(ui.item.value);
+            $("#el-schooltelef").val(ui.item.tel);
+        },
+
+        html: false,
+
+        open: function(event, ui) {
+            $(".ui-autocomplete").css("z-index", 1000);
+        }
     });
 
 }(window.jQuery, _, window.EDULABS.utils));
