@@ -64,7 +64,7 @@ return function (App $app) {
             $school_name = $req->getQueryParam('term');
 
             $httpClient = new GuzzleHttp\Client([
-                    'base_uri' => "https://mm.sch.gr/api/units",
+                    'base_uri' => $container['settings']['sch_mm']['public_api_url']
                     ]);
 
             $config   = $httpClient->getConfig();
