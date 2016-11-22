@@ -67,9 +67,10 @@ class UniversityForm
             $reqParams = $req->getParams();
 
             $this->UniversityFormInputFilter->setData($reqParams);
+           
             $isValid = $this->UniversityFormInputFilter->isValid();      
             if ($isValid) {
-           
+                
                 $data =                            $this->UniversityFormInputFilter->getValues();
                 $UniversityForm =                  $this->UniversityFormService->submit($data);
                 $_SESSION['UnivForm']['uForm'] =   $UniversityForm;
@@ -77,6 +78,7 @@ class UniversityForm
                return $res;
            } 
            else {
+                
                 $this->view['form'] = [
 
                 'is_valid' => $isValid,

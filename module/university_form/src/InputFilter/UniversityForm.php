@@ -20,33 +20,21 @@ class UniversityForm extends InputFilter
  
     public function __construct()
     {
-       
-
+ 
        
         $idrima = new Input('idrima');
         $idrima->setRequired(true)
-            ->getFilterChain()
-            ->attach(new Filter\StringTrim());
-        $idrima->getValidatorChain()
-            ->attach(new Validator\NotEmpty())
-            ->attach(new Validator\StringLength(['min' => 3]));
+                    ->getFilterChain();
 
+       
         $sxolh = new Input('sxolh');
-        $sxolh->setRequired(true)
-            ->getFilterChain()
-            ->attach(new Filter\StringTrim());
-        $sxolh->getValidatorChain()
-            ->attach(new Validator\NotEmpty())
-            ->attach(new Validator\StringLength(['min' => 3]));
-    
+        $sxolh->setRequired(false)
+                    ->getFilterChain();
+
 
         $tmhma = new Input('tmhma');
-        $tmhma->setRequired(true)
-            ->getFilterChain()
-            ->attach(new Filter\StringTrim());
-        $tmhma->getValidatorChain()
-            ->attach(new Validator\NotEmpty())
-            ->attach(new Validator\StringLength(['min' => 3]));
+        $tmhma->setRequired(false)
+                    ->getFilterChain();
    
 
         $person = new Input('person');
@@ -77,7 +65,7 @@ class UniversityForm extends InputFilter
 
 
        $comments = new Input('comments');
-                $comments->setRequired(false)
+       $comments->setRequired(false)
                     ->getFilterChain()
                     ->attach(new Filter\StringTrim());
 

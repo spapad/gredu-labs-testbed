@@ -4,7 +4,7 @@
 
 {% block content %}
 
-
+    <body>
     <div id="app-form">
     <h1>
     {% block title %}
@@ -12,7 +12,7 @@
     {% endblock %}
     </h1>
     <form method="post" action="" data-is-valid="{{ form.is_valid | default(true) ? '1' : '0' }}"
-          data-messages="{{ form.messages|default({})|json_encode }}">
+          data-messages="{{ form.messages|default({})|json_encode }}" >
         <div class="form-group">
               <p>
                         <h1>Φόρμα εκδήλωσης ενδιαφέροντος</h1>
@@ -24,11 +24,14 @@
          </div>
 
         <div class="table-responsive">
+
+   
+
        <fieldset>
                 <div id="items-list">
-                    {{ macros.input('idrima', 'Ίδρυμα',form.values.idrima) }}
-                    {{ macros.input('sxolh', 'Σχολή',form.values.sxolh ) }}
-                    {{ macros.input('tmhma', 'Τμήμα',form.values.tmhma ) }}
+                    {{ macros.select('idrima', 'Ίδρυμα', form.idrima, form.values.idrima, { 'id': 'idrima'} )}}
+                    {{ macros.select('sxolh', 'Σχολή',form.sxolh, form.values.sxolh,{ 'id': 'sxolh'} ) }}
+                    {{ macros.select('tmhma', 'Τμήμα',form.tmhma, form.values.tmhma, { 'id': 'tmhma'}) }}
                     {{ macros.input('person', 'Υπεύθυνος Επικοινωνίας',form.values.person ) }}
                     {{ macros.input('telef', 'Τηλέφωνο',form.values.telef ) }}
                     {{ macros.input('email', 'Email',form.values.email ) }}
@@ -47,11 +50,16 @@
             </form>
  
     </div>
+</body>
 
 {% endblock %}
 {% block inlinejs %}
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <script src="{{ base_url() }}/js/jquery-3.1.1.min.js"></script>
     <script src="{{ base_url() }}/js/teacher_form/index.js"></script>
+     <script type="text/javascript">
+    </script>
+    
 {% endblock %}
