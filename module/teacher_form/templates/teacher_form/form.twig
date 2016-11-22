@@ -24,7 +24,7 @@
 
         <div class="table-responsive">
        <fieldset>
-                <div id="items-list">
+    <!--            <div id="items-list"> -->
                          {{ macros.input('name', 'Όνομα', form.values.name)}}
                          {{ macros.input('surname', 'Επώνυμο', form.values.surname)}}
                          {{ macros.select('eidikothta', 'Ειδικότητα', form.branches, form.values.eidikothta, {'required': ''}) }}
@@ -39,8 +39,11 @@
                          </div>
                          {{ macros.input('school', 'Σχολείο που υπηρετείτε', form.values.school, 'text', {'readonly': true})}}
                          {{ macros.input('schooltelef', 'Τηλέφωνο Σχολείου', form.values.schooltelef, 'text', {'readonly': true})}}
+                         {{ macros.input('projecttitle', 'Σχετική δράση που συμμετείχατε', form.values.projecttitle)}}
+                         {{ macros.input('projecturl', 'URL δράσης που συμμετείχατε', form.values.projecturl)}}
+                         {{ macros.text('projectdescription', 'Περιγραφή δράσης που συμμετείχατε', form.values.projectdescription)}}
 
-                </div>
+<!--                </div>  -->
                 {{ macros.text('comments', 'Σχόλια/Παρατηρήσεις', form.values.comments) }}
             </fieldset>
         </div>

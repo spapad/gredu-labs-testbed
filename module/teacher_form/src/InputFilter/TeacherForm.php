@@ -82,11 +82,26 @@ class TeacherForm extends InputFilter
             ->attach(new Validator\NotEmpty())
             ->attach(new Validator\StringLength(['min' => 10]))
 			->attach(new Validator\StringLength(['max' => 13]));
+
+        $projecttitle = new Input('projecttitle');
+                $projecttitle->setRequired(false)
+                    ->getFilterChain()
+                    ->attach(new Filter\StringTrim());
+
+        $projecturl = new Input('projecturl');
+                $projecturl->setRequired(false)
+                    ->getFilterChain()
+                    ->attach(new Filter\StringTrim());
+
+        $projectdescription = new Input('projectdescription');
+                $projectdescription->setRequired(false)
+                    ->getFilterChain()
+                    ->attach(new Filter\StringTrim());
+
         $comments = new Input('comments');
                 $comments->setRequired(false)
                     ->getFilterChain()
                     ->attach(new Filter\StringTrim());
-
 
         $this->add($name)
 	        ->add($surname)
@@ -96,7 +111,9 @@ class TeacherForm extends InputFilter
             ->add($telef)
             ->add($schooltelef)
             ->add($school)
-            ->add($comments)
-            ;
+            ->add($projecttitle)
+            ->add($projecturl)
+            ->add($projectdescription)
+            ->add($comments);
           }
 }
