@@ -687,6 +687,9 @@ CREATE TABLE IF NOT EXISTS `volunteerteachers` (
   `school` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `schooltelef` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `comments` text NOT NULL,
+  `projecttitle` varchar(255),
+  `projecturl` varchar(255),
+  `projectdescription` text,
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
