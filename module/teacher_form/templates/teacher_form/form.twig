@@ -3,8 +3,6 @@
 {% import "schools/form.twig" as macros %}
 
 {% block content %}
-
-
 <div id="app-form">
     <h1>
     {% block title %}
@@ -13,6 +11,7 @@
     </h1>
     <form method="post" action="" data-is-valid="{{ form.is_valid | default(true) ? '1' : '0' }}"
           data-messages="{{ form.messages|default({})|json_encode }}">
+          <input type="hidden" id="mm_id" name="mm_id" value="0">
         <div class="form-group">
               <p>
                         <h1>Φόρμα εκδήλωσης ενδιαφέροντος</h1>
@@ -25,17 +24,26 @@
 
         <div class="table-responsive">
        <fieldset>
-                <div id="items-list">
+    <!--            <div id="items-list"> -->
                          {{ macros.input('name', 'Όνομα', form.values.name)}}
                          {{ macros.input('surname', 'Επώνυμο', form.values.surname)}}
                          {{ macros.select('eidikothta', 'Ειδικότητα', form.branches, form.values.eidikothta, {'required': ''}) }}
                          {{ macros.input('arithmitroou', 'Αριθμός Μητρώου', form.values.arithmitroou)}}
                          {{ macros.input('telef', 'Τηλέφωνο', form.values.telef)}}
                          {{ macros.input('email', 'Email', form.values.email)}}
-                         {{ macros.input('school', 'Σχολείο που υπηρετει', form.values.school)}}
-                         {{ macros.input('schooltelef', 'Τηλέφωνο Σχολείου', form.values.schooltelef)}}
+                         <div class="form-group">
+                             <label class="control-label hidden-xs hidden-sm col-md-3" for="select_school">Αναζήτηση σχολείου</label>
+                             <div class="col-xs-12 col-sm-12 col-md-9">
+                                 <input type="text" id="select_school" name="select_school" placeholder="Γράψτε 4 τουλάχιστο χαρακτήρες για αναζήτηση" class="form-control input-sm">
+                             </div>
+                         </div>
+                         {{ macros.input('school', 'Σχολείο που υπηρετείτε', form.values.school, 'text', {'readonly': true})}}
+                         {{ macros.input('schooltelef', 'Τηλέφωνο Σχολείου', form.values.schooltelef, 'text', {'readonly': true})}}
+                         {{ macros.input('projecttitle', 'Σχετική δράση που συμμετείχατε', form.values.projecttitle)}}
+                         {{ macros.input('projecturl', 'URL δράσης που συμμετείχατε', form.values.projecturl)}}
+                         {{ macros.text('projectdescription', 'Περιγραφή δράσης που συμμετείχατε', form.values.projectdescription)}}
 
-                </div>
+<!--                </div>  -->
                 {{ macros.text('comments', 'Σχόλια/Παρατηρήσεις', form.values.comments) }}
             </fieldset>
         </div>
@@ -47,7 +55,7 @@
         <input type="hidden" name="{{ csrf.value_key }}" value="{{ csrf.value }}">
     </form>
 
-   
+
 </div>
 {% endblock %}
 
@@ -55,5 +63,8 @@
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <script src="{{ base_url }}/js/jquery-ui.autoc.min.js"></script>
+
     <script src="{{ base_url() }}/js/teacher_form/index.js"></script>
+
 {% endblock %}
