@@ -24,8 +24,6 @@ class TeacherFormService implements TeacherFormServiceInterface
         $appForm->telef               = trim($data['telef']);
         $appForm->school              = $data['school'];
         $appForm->schooltelef         = trim($data['schooltelef']);
-        $appForm->projecttitle         = $data['projecttitle'];
-        $appForm->projecturl         = $data['projecturl'];
         $appForm->projectdescription   = $data['projectdescription'];
         $appForm->comments            = $data['comments'];
         R::store($appForm);
