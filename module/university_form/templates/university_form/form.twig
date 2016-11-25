@@ -17,9 +17,9 @@
               <p>
                         <h1>Φόρμα εκδήλωσης ενδιαφέροντος</h1>
                         <br>
-                         Το συγκεκριμένο έργο δίνει τη δυνατότητα σε όποιον εκπαιδευτικό επιθυμεί να συμμετέχει ενεργά στην εγκατάσταση των εργαστηρίων που θα αποκτηθούν με τη συγκεκριμένη δράση.
-                        <br>
-                         Παρακαλώ συμπληρώστε τα στοιχεία σας και θα επικοινωνίσουμε άμεσα μαζί σας.
+                        Στην δράση των edulabs μπορεί να συμμετέχει ακαδημαϊκό και ερευνητικό προσωπικό από όλα τα Πανεπιστήμια και Ερευνητικά Κέντρα  με εμπειρία σε STEAM που θέλει να συνεργαστεί με τα σχολεία στην αξιοποίηση των 140 <a href="http://edulabs.minedu.gov.gr/">edulabs </a>που εγκαθίστανται σε σχολεία σε όλες τις εκπαιδευτικές διευθύνσεις.
+
+                        <br>Παρακαλώ συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε μαζί σας. 
                 </p>
          </div>
 
@@ -29,19 +29,22 @@
 
        <fieldset>
                 <div id="items-list">
-                    {{ macros.select('idrima', 'Ίδρυμα', form.idrima, form.values.idrima, { 'id': 'idrima'} )}}
-                    {{ macros.select('sxolh', 'Σχολή',form.sxolh, form.values.sxolh,{ 'id': 'sxolh'} ) }}
-                    {{ macros.select('tmhma', 'Τμήμα',form.tmhma, form.values.tmhma, { 'id': 'tmhma'}) }}
+                    {{ macros.select('idrima', 'Ίδρυμα', '', form.values.idrima, { 'id': 'idrima'} )}}
+                    {{ macros.select('sxolh', 'Σχολή','', form.values.sxolh,{ 'id': 'sxolh'} ) }}
+                    {{ macros.select('tmhma', 'Τμήμα','', form.values.tmhma, { 'id': 'tmhma'}) }}
                     {{ macros.input('person', 'Υπεύθυνος Επικοινωνίας',form.values.person ) }}
                     {{ macros.input('telef', 'Τηλέφωνο',form.values.telef ) }}
                     {{ macros.input('email', 'Email',form.values.email ) }}
                     {{ macros.text('comments', 'Σχόλια/Παρατηρήσεις', form.values.comments) }}
-                    <input type="hidden" name="id" value="">
+                                       
                 </div>
 
                 <div class="form-group text-center">
                     <button name="submit" value="submit" type="submit" class="btn btn-lg btn-primary">Υποβολή</button>
                     <input type="hidden" name="id" value="{{ form.values.id }}">
+                    <input type="hidden" name="hididrima" id="hididrima" value="{{form.values.idrima}}">
+                    <input type="hidden" name="hidsxolh" id="hidsxolh" value="{{form.values.sxolh}}">
+                    <input type="hidden" name="hidtmhma" id="hidtmhma" value="{{form.values.tmhma}}">
                 </div>
                 <input type="hidden" name="{{ csrf.name_key }}" value="{{ csrf.name }}">
                 <input type="hidden" name="{{ csrf.value_key }}" value="{{ csrf.value }}">
