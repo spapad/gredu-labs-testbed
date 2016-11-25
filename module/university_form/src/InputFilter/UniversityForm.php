@@ -37,6 +37,11 @@ class UniversityForm extends InputFilter
                     ->getFilterChain();
    
 
+        $erga = new Input('erga');
+        $erga->setRequired(false)
+            ->getFilterChain()
+            ->attach(new Filter\StringTrim());
+
         $person = new Input('person');
         $person->setRequired(true)
             ->getFilterChain()
@@ -73,6 +78,7 @@ class UniversityForm extends InputFilter
         $this ->add($idrima)
             ->add($sxolh)
             ->add($tmhma)
+            ->add($erga)
             ->add($person)
             ->add($telef)
             ->add($email)
