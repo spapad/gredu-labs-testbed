@@ -3,7 +3,11 @@
 {% import "schools/form.twig" as macros %}
 
 {% block content %}
-
+<style> 
+input[type=text] {
+    width: 100%;
+}
+</style>
     <body>
     <div id="app-form">
     <h1>
@@ -15,7 +19,7 @@
           data-messages="{{ form.messages|default({})|json_encode }}" >
         <div class="form-group">
               <p>
-                        <h1>Φόρμα εκδήλωσης ενδιαφέροντος</h1>
+                        <h1>Αίτηση εκδήλωσης ενδιαφέροντος</h1>
                         <br>
                         Στην δράση των edulabs μπορεί να συμμετέχει ακαδημαϊκό και ερευνητικό προσωπικό από όλα τα Πανεπιστήμια και Ερευνητικά Κέντρα  με εμπειρία σε STEAM που θέλει να συνεργαστεί με τα σχολεία στην αξιοποίηση των 140 <a href="http://edulabs.minedu.gov.gr/">edulabs </a>που εγκαθίστανται σε σχολεία σε όλες τις εκπαιδευτικές διευθύνσεις.
 
@@ -24,9 +28,6 @@
          </div>
 
         <div class="table-responsive">
-
-   
-
        <fieldset>
                 <div id="items-list">
                     {{ macros.select('idrima', 'Ίδρυμα', '', form.values.idrima, { 'id': 'idrima'} )}}
@@ -36,12 +37,33 @@
                     {{ macros.input('person', 'Υπεύθυνος Επικοινωνίας',form.values.person ) }}
                     {{ macros.input('telef', 'Τηλέφωνο',form.values.telef ) }}
                     {{ macros.input('email', 'Email',form.values.email ) }}
+
+
+                  <br>
+                  <br>
+                  <br> 
+			    <h3> Δράσεις</h3>
+			    Παρακαλώ περιγράψτε σύντομα δράσεις που έχετε συμμετάσχει. 
+			    <div class="input_fields_wrap">
+			        <button style="color:blue" class="add_field_button" "btn btn-lg btn-primary">Προσθήκη Επιπλέον</button>
+			        <div><label for="projects">Σχετική δράση που συμμετείχατε </label><input type="text" name="projects[]" id="projects"></div>
+			        <div><label for="urlproject">URL δράσης που συμμετείχατε</label><input type="text" name="urlproject[]" id="urlproject"></div>
+			        <div><label for "commentproject">Περιγραφή δράσης που συμμετείχατε</label><input type="text" name="commentsproject[]" id="commentproject"></div>
+			        
+			        
+			    </div>
+
+			   <input type="hidden" name="projectdescription" id="projectdescription"> 
+
+			   <p>
+			    <p>
+
                     {{ macros.text('comments', 'Σχόλια/Παρατηρήσεις', form.values.comments) }}
                                        
                 </div>
 
                 <div class="form-group text-center">
-                    <button name="submit" value="submit" type="submit" class="btn btn-lg btn-primary">Υποβολή</button>
+                    <button name="submit" value="submit" type="submit" id="submit" class="btn btn-lg btn-primary">Υποβολή</button>
                     <input type="hidden" name="id" value="{{ form.values.id }}">
                     <input type="hidden" name="hididrima" id="hididrima" value="{{form.values.idrima}}">
                     <input type="hidden" name="hidsxolh" id="hidsxolh" value="{{form.values.sxolh}}">

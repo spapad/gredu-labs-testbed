@@ -27,6 +27,7 @@ class UniversityFormService implements UniversityFormServiceInterface
         $appForm->person              = $data['person'];
         $appForm->telef               = trim($data['telef']);
         $appForm->email               = $data['email'];
+        $appForm->projectdescription   = $data['projectdescription'];
         $appForm->comments            = $data['comments'];
  
  

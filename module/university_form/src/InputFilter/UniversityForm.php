@@ -69,6 +69,13 @@ class UniversityForm extends InputFilter
             ->attach(new Validator\StringLength(['max' => 13]));
 
 
+       $projectdescription = new Input('projectdescription');
+                $projectdescription->setRequired(false)
+                    ->getFilterChain()
+                    ->attach(new Filter\StringTrim());
+
+      
+
        $comments = new Input('comments');
        $comments->setRequired(false)
                     ->getFilterChain()
@@ -82,6 +89,7 @@ class UniversityForm extends InputFilter
             ->add($person)
             ->add($telef)
             ->add($email)
+            ->add($projectdescription)
             ->add($comments);
     }
 }
